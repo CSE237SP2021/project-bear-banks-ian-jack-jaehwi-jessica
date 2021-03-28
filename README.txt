@@ -1,6 +1,6 @@
 CSE237: Programming Tools and Techniques
-Project: Bear Banks
 Members: Jack Cho, Jessica Wu, Ian Youth, Jaehwi Park
+Project: Bear Banks
 
 1.) What user stories were completed in this iteration?
 	(A) A customer should be able to access their menu of options.
