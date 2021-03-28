@@ -16,19 +16,32 @@ Target Audience: People who currently bank with us / People who want to bank wit
 Key Features: Anything that an ATM might normally do, along with some back-end features (will update for further functionality)
     Customers
         Open an account (everyone would do this first)
+        
         Log in (Name, Pin number)
+        
         Change pin
+        
         Set security questions
+        
         View balance
+        
         Withdraw cash
+        
         Deposit cash
+        
         “Print” a receipt (after withdrawing/depositing)
+        
         Transfer money in between accounts
+        
         Cash checks
+        
     Employees
         Lock the ATM for use
+        
         Close a customer’s account
+        
         View balance of a customer’s account
+        
         Reset security questions
 
 
