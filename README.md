@@ -14,6 +14,7 @@ Project Summary: ATM Machine
 Target Audience: People who currently bank with us / People who want to bank with us
  
 Key Features: Anything that an ATM might normally do, along with some back-end features (will update for further functionality)
+    
     Customers
         Open an account (everyone would do this first)
         
