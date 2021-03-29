@@ -3,10 +3,15 @@
 **Please see README.txt in the README branch to see the progress report for iteration 1.**
 
 **Class**: CSE237
+
 **Group members**: Ian Youth | Jessica Wu | Jack Cho | Jaehwi Park
+
 **Program Name**: Bear Banks
+
 **Coding Language**: Java 
+
 **IDE**: Eclipse
+
 **Interface**: Text-based; command line application
 
 **Overarching Project Summary**: "Bear Banks" will essentially be an ATM machine with which customers and employees can interact and execute various bank-related tasked. Our **target audience** would theoretically be (1) people who would like to bank with us, (2) people who work for Bear Banks, and (3) people who currently bank with us (3/29 note: additionally functionality to be added).
