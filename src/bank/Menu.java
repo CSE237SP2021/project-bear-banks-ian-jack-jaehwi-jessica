@@ -72,8 +72,7 @@ public class Menu {
 			customerAccount.initializeAccountDetails(customerAccount);
 			this.displayCustomerOptionsMenu();
 		} else if (CustomerOption == 2) {
-			System.out.println("Exiting the program...");
-			return;
+			exitProgram();
 		}
 		else {
 			System.out.println("Please select one of the available options.");
@@ -103,13 +102,17 @@ public class Menu {
 			customerAccount.withdrawCash(withdrawAmount);
 		}
 		else if (selectedOption == 4) {
-			System.out.println("Exiting the program...");
-			return;
+			exitProgram();
 		}
 		else {
 			System.out.println("Please select one of the available options.");
 		}
 		displayCustomerOptionsMenu();
+	}
+
+	private void exitProgram() {
+		System.out.println("Exiting the program...");
+		System.exit(0);
 	}
 
 	private void processEmployeeMenu(int EmployeeOption) {
