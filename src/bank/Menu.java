@@ -5,9 +5,11 @@ import java.util.Scanner;
 public class Menu {
 		
 	private Scanner keyboardIn;
+	private Account customerAccount;
 	
 	public Menu() {
 		 keyboardIn = new Scanner(System.in);
+		 customerAccount = new Account();
 	}
 
 	public static void main(String[] args) {
@@ -55,41 +57,25 @@ public class Menu {
 	
 	private void displayCustomerMenu() {
 		System.out.println("(1) Create Account");
+		System.out.println("(2) Exit");
 	}
 	
 	private void displayEmployeeMenu() {
 		System.out.println("(1) Lock the ATM");
+		System.out.println("(2) Exit");
 	}
 	
 	private void processCustomerMenu(int CustomerOption) {
 		
 		if (CustomerOption == 1) {
-			
-			System.out.println("Please enter your name.");
-			String accountOwner = getUserStringInput();
-			
-			System.out.println("Please choose a four-digit PIN number.");
-			int pinNumber = getUserInput();
-			
-			Account newCustomerAccount = new Account();
-			
-			boolean pinIsValid = newCustomerAccount.checkPinValidity(pinNumber);
-			
-			while (!pinIsValid) {
-				pinNumber = getUserInput();
-				pinIsValid = newCustomerAccount.checkPinValidity(pinNumber);
-			}
-			
-			newCustomerAccount = new Account(accountOwner, pinNumber);
-			
-			System.out.println("Success! We've created your new account.");
-			System.out.println("Account name: " + newCustomerAccount.getAccountOwner());
-			System.out.println("Pin Number: " + newCustomerAccount.getPinNumber());
-			
+			customerAccount.initializeAccountDetails(customerAccount);
 			this.displayCustomerOptionsMenu();
+		} else if (CustomerOption == 2) {
+			System.out.println("Exiting the program...");
+			return;
 		}
 		else {
-			System.out.println("You have to create an account! Please choose option (1).");
+			System.out.println("Please select one of the available options.");
 			int newCustomerOption = this.getUserInput();
 			this.processCustomerMenu(newCustomerOption);
 		}
@@ -97,28 +83,40 @@ public class Menu {
 	
 	public void displayCustomerOptionsMenu() {
 		System.out.println("(1) View Balance");
-		System.out.println("(2) Withdraw Cash");
-		System.out.println("(3) Deposit Cash");
+		System.out.println("(2) Deposit Cash");
+		System.out.println("(3) Withdraw Cash");
+		System.out.println("(4) Exit");
 		
 		int selectedOption = getUserInput();
 		if (selectedOption == 1) {
-			System.out.println("Additional functionality to implement later (viewing balance)");
+			System.out.println("Your current balance is: $" + customerAccount.getBalance());
 		}
 		else if (selectedOption == 2) {
-			System.out.println("Additional functionality to implement later (withdrawing cash)");
+			System.out.println("How much cash would you like to deposit?");
+			int depositAmount = getUserInput();
+			customerAccount.depositCash(depositAmount);
 		}
 		else if (selectedOption == 3) {
-			System.out.println("Additional functionality to implement later (depositing cash)");
+			System.out.println("How much cash would you like to withdraw?");
+			int withdrawAmount = getUserInput();
+			customerAccount.withdrawCash(withdrawAmount);
+		}
+		else if (selectedOption == 4) {
+			System.out.println("Exiting the program...");
+			return;
 		}
 		else {
 			System.out.println("Please select one of the available options.");
-			displayCustomerOptionsMenu();
 		}
+		displayCustomerOptionsMenu();
 	}
 
 	private void processEmployeeMenu(int EmployeeOption) {
 		if (EmployeeOption == 1) {
 			System.out.println("Additional functionality to implement later (locking the ATM)");
+		} else if (EmployeeOption == 2) {
+			System.out.println("Exiting the program");
+			return;
 		}
 		else {
 			System.out.println("Please select one of the available options.");
@@ -131,10 +129,4 @@ public class Menu {
 	private int getUserInput() {
 		return keyboardIn.nextInt();
 	}
-	
-	private String getUserStringInput() {
-		String extraInput = keyboardIn.nextLine();
-		return keyboardIn.nextLine();
-	}
-	
 }
