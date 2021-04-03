@@ -92,7 +92,6 @@ public class Account {
 			}
 		}
 		
-		
 		//reference: https://stackoverflow.com/questions/4614227/how-to-add-a-new-line-of-text-to-an-existing-file-in-java
 		//this adds the new balance (after withdrawal or depositing) as a new line on the file
 		//check the file after running this method, you'll find that the file is updated with whatever the "newBalance" is

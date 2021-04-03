@@ -26,6 +26,7 @@ public class Menu {
 		keyboardIn.close();
 	}
 	
+	
 	private void displayMainMenu() {
 		System.out.println("Welcome to Bear Banks!");
 		System.out.println("I am a...");
