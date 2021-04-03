@@ -59,11 +59,13 @@ public class Menu {
 	private void displayCustomerMenu() {
 		System.out.println("(1) Create Account");
 		System.out.println("(2) Exit");
+		System.out.println("(3) Go Back");
 	}
 	
 	private void displayEmployeeMenu() {
 		System.out.println("(1) Lock the ATM");
 		System.out.println("(2) Exit");
+		System.out.println("(3) Go Back");
 	}
 	
 	private void processCustomerMenu(int CustomerOption) {
@@ -73,7 +75,10 @@ public class Menu {
 			this.displayCustomerOptionsMenu();
 		} else if (CustomerOption == 2) {
 			exitProgram();
+		} else if (CustomerOption == 3) {
+			runMenu();
 		}
+		
 		else {
 			System.out.println("Please select one of the available options.");
 			int newCustomerOption = this.getUserInput();
@@ -86,6 +91,7 @@ public class Menu {
 		System.out.println("(2) Deposit Cash");
 		System.out.println("(3) Withdraw Cash");
 		System.out.println("(4) Exit");
+		System.out.println("(5) Go Back");
 		
 		int selectedOption = getUserInput();
 		if (selectedOption == 1) {
@@ -104,6 +110,10 @@ public class Menu {
 		else if (selectedOption == 4) {
 			exitProgram();
 		}
+		else if (selectedOption == 5) {
+			displayCustomerMenu();
+			processCustomerMenu(this.getUserInput());
+		}
 		else {
 			System.out.println("Please select one of the available options.");
 		}
@@ -121,6 +131,8 @@ public class Menu {
 		} else if (EmployeeOption == 2) {
 			System.out.println("Exiting the program");
 			return;
+		} else if (EmployeeOption == 3) {
+			runMenu();
 		}
 		else {
 			System.out.println("Please select one of the available options.");
@@ -129,7 +141,6 @@ public class Menu {
 			this.processEmployeeMenu(EmployeeOption);
 		}
 	}
-	
 	
 	private int getUserInput() {
 		return keyboardIn.nextInt();
