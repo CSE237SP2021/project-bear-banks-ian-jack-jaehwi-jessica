@@ -7,8 +7,6 @@ import java.io.IOException;
 import java.io.Writer;
 import java.util.Scanner;
 
-
-
 public class Account {
 	
 	private String accountOwner;
