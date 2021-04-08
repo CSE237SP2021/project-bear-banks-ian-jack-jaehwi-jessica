@@ -20,6 +20,18 @@ class AccountTest {
 		assertFalse(negativePinNumber.checkPinValidity(Integer.toString(negativePinNumber.getPinNumber())));
 	}
 	
+	@Test
+	void catchExtraZeroPinNumberTest() {
+		Account extraZeroPinNumber = new Account("John Smith", 00001234);
+		assertFalse(extraZeroPinNumber.checkPinValidity(Integer.toString(extraZeroPinNumber.getPinNumber())));
+	}
+	
+	@Test
+	void checkAcceptablePinNumberTest() {
+		Account acceptablePinNumber = new Account("John Smith", 1234);
+		assertTrue(acceptablePinNumber.checkPinValidity(Integer.toString(acceptablePinNumber.getPinNumber())));
+	}
+	
 	
 	@Test
 	void catchNegativeDepositTest() {
