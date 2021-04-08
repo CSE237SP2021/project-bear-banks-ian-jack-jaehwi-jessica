@@ -28,24 +28,44 @@ public class Account {
 		String accountOwner = getUserStringInput();
 		
 		System.out.println("Please choose a four-digit PIN number.");
-		int pinNumber = getUserInput();
+		//int pinNumber = getUserInput();
+		String pinNumberString = getUserStringInput();
+		
+		
 				
-		boolean pinIsValid = customerAccount.checkPinValidity(pinNumber);
+		boolean pinIsValid = customerAccount.checkPinValidity(pinNumberString);
 		
 		while (!pinIsValid) {
-			pinNumber = getUserInput();
-			pinIsValid = customerAccount.checkPinValidity(pinNumber);
+			//pinNumber = getUserInput();
+			pinNumberString = getUserStringInput();
+			pinIsValid = customerAccount.checkPinValidity(pinNumberString);
 		}
-		
+		pinNumber = Integer.parseInt(pinNumberString);
 		customerAccount = new Account(accountOwner, pinNumber);
 		
 		System.out.println("Success! We've created your new account.");
 		System.out.println("Account name: " + customerAccount.getAccountOwner());
 		System.out.println("Pin Number: " + customerAccount.getPinNumber());
+		if(pinNumber < 10) {
+			System.out.println("Pin Number: 000" + customerAccount.getPinNumber());
+		}
+		else if (pinNumber < 100) {
+			System.out.println("Pin Number: 00" + customerAccount.getPinNumber());
+		}
+		else if (pinNumber < 1000) {
+			System.out.println("Pin Number: 0" + customerAccount.getPinNumber());
+		}
 	}
 
-	public boolean checkPinValidity(int pinNumber) {
-		while (Integer.toString(pinNumber).length() != 4 || (pinNumber < 0)) {
+	public boolean checkPinValidity(String pinNumberString) {
+		if(StringIsInt(pinNumberString)) {
+			int pinNumber = Integer.parseInt(pinNumberString);  
+		}
+		else {
+			System.out.println("Valid PIN numbers are positive, four-digit integers.");
+			return false;
+		}
+		if (pinNumberString.length() != 4 || pinNumber > 9999 || pinNumber < 0) {
 			System.out.println("Valid PIN numbers are positive, four-digit integers.");
 			return false;
 		}
@@ -75,51 +95,6 @@ public class Account {
 	}
 	
 	
-		public void createAccountInfoFile() {
-			try {
-				FileWriter myWriter = new FileWriter(this.accountInfoFileName);
-				myWriter.write(this.accountOwner + "\n");
-				myWriter.write(this.pinNumber + "\n");
-				myWriter.write("0\n");
-				myWriter.close();
-				System.out.println("Successfully wrote to the file.");
-			} catch (IOException e) {
-				System.out.println("An error occurred.");
-				e.printStackTrace();
-			}
-		}
-		
-		public void updateBalanceOnFile(int newBalance) {
-			try {
-				FileWriter myWriter = new FileWriter(this.accountInfoFileName, true);
-				Writer writer = new BufferedWriter(myWriter);
-				writer.append(newBalance + "\n");
-				writer.close();
-				myWriter.close();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		
-		public String readBalance() {
-			String last = "";
-
-			try {
-				File myObj = new File(this.accountInfoFileName);
-				Scanner myReader = new Scanner(myObj);
-				while (myReader.hasNextLine()) {
-					String data = myReader.nextLine();
-					//System.out.println(data);
-					last = data;
-				}
-				myReader.close();
-			} catch (FileNotFoundException e) {
-				System.out.println("An error occurred.");
-				e.printStackTrace();
-			}
-			return last;
-		}
 	
 	private int getUserInput() {
 		Scanner keyboardIn = new Scanner(System.in);
@@ -130,6 +105,22 @@ public class Account {
 		Scanner keyboardIn = new Scanner(System.in);
 		return keyboardIn.nextLine();
 	}
+	
+	private static boolean StringIsInt(String stringThatMayBeInt) {
+		int numIntegerFound = 0;
+		for(int i = 0; i < stringThatMayBeInt.length(); i++) {
+			if(Character.isDigit(stringThatMayBeInt.charAt(i))) {
+				numIntegerFound++;
+			}
+		}
+		if(numIntegerFound == stringThatMayBeInt.length()) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
 	
 	public String getAccountOwner() {
 		return accountOwner;
@@ -145,9 +136,7 @@ public class Account {
 
 	public static void main(String[] args) {
 		
-		Account account1 = new Account ("jack", 1234);
-		System.out.println(account1.accountInfoFileName);
-		
+	
 		
 	}
 }
