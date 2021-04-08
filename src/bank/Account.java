@@ -28,7 +28,6 @@ public class Account {
 		String accountOwner = getUserStringInput();
 		
 		System.out.println("Please choose a four-digit PIN number.");
-		//int pinNumber = getUserInput();
 		String pinNumberString = getUserStringInput();
 		
 		
@@ -36,7 +35,6 @@ public class Account {
 		boolean pinIsValid = customerAccount.checkPinValidity(pinNumberString);
 		
 		while (!pinIsValid) {
-			//pinNumber = getUserInput();
 			pinNumberString = getUserStringInput();
 			pinIsValid = customerAccount.checkPinValidity(pinNumberString);
 		}
@@ -45,7 +43,6 @@ public class Account {
 		
 		System.out.println("Success! We've created your new account.");
 		System.out.println("Account name: " + customerAccount.getAccountOwner());
-		System.out.println("Pin Number: " + customerAccount.getPinNumber());
 		if(pinNumber < 10) {
 			System.out.println("Pin Number: 000" + customerAccount.getPinNumber());
 		}
@@ -54,6 +51,10 @@ public class Account {
 		}
 		else if (pinNumber < 1000) {
 			System.out.println("Pin Number: 0" + customerAccount.getPinNumber());
+		}
+		else {
+			System.out.println("Pin Number: " + customerAccount.getPinNumber());
+
 		}
 	}
 
