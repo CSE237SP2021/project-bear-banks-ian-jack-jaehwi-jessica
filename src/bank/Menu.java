@@ -8,11 +8,13 @@ public class Menu {
 		
 	private Scanner keyboardIn;
 	private Account customerAccount;
+	private Employee employee;
 	private static List<Integer> correctInputs;
 	
 	public Menu() {
 		 keyboardIn = new Scanner(System.in);
 		 customerAccount = new Account();
+		 employee = new Employee();
 		 correctInputs = new ArrayList<Integer>();
 		 
 	}
@@ -153,7 +155,7 @@ public class Menu {
 
 	private void processEmployeeMenu(int EmployeeOption) {
 		if (EmployeeOption == 1) {
-			System.out.println("Additional functionality to implement later (locking the ATM)");
+			employee.displayEmployeeQuestionnaire();
 		} else if (EmployeeOption == 2) {
 			System.out.println("Exiting the program");
 			return;
@@ -175,12 +177,12 @@ public class Menu {
 			if (correctInputs.contains(selectedOption)) {
 				return selectedOption;
 			} else {
-				System.out.println("Please input one of: " + correctInputs);
+				System.out.println("Please choose one of the following options: " + correctInputs);
 				return getUserInput(correctInputs);
 			}
 		} catch(Exception e) {
 			keyboardIn.nextLine();
-			System.out.println("Please input one of: " + correctInputs);
+			System.out.println("Please choose one of the following options: " + correctInputs);
 			return getUserInput(correctInputs);
 		}
 
