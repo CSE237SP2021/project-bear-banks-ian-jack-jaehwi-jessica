@@ -1,10 +1,4 @@
 package bank;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.Writer;
 import java.util.Scanner;
 
 public class Account {
@@ -12,7 +6,6 @@ public class Account {
 	private String accountOwner;
 	private int pinNumber;
 	private int accountBalance;
-	private String accountInfoFileName;
 
 	public Account() {}
 	
@@ -20,18 +13,16 @@ public class Account {
 		this.accountOwner = accountOwner;
 		this.pinNumber = pinNumber;
 		this.accountBalance = 0;
-		this.accountInfoFileName = accountOwner + "_" + pinNumber + ".txt";
 	}
 	
 	public void initializeAccountDetails(Account customerAccount) {
+		
 		System.out.println("Please enter your name.");
 		String accountOwner = getUserStringInput();
 		
 		System.out.println("Please choose a four-digit PIN number.");
 		String pinNumberString = getUserStringInput();
 		
-		
-				
 		boolean pinIsValid = customerAccount.checkPinValidity(pinNumberString);
 		
 		while (!pinIsValid) {
@@ -40,10 +31,42 @@ public class Account {
 		}
 		pinNumber = Integer.parseInt(pinNumberString);
 		customerAccount = new Account(accountOwner, pinNumber);
-		
+		reformatPinNumber(customerAccount);
+
 		System.out.println("Success! We've created your new account.");
 		System.out.println("Account name: " + customerAccount.getAccountOwner());
-		if(pinNumber < 10) {
+		
+	}
+
+	public boolean checkPinValidity(String pinNumberString) {
+		if(!StringIsInt(pinNumberString)) {
+			System.out.println("Please only enter digits when choosing a PIN number.");
+			return false;
+		}
+		if (pinNumberString.length() != 4 || pinNumber > 9999 || pinNumber < 0) {
+			System.out.println("Valid PIN numbers are positive, four-digit integers.");
+			return false;
+		}
+		return true;
+	}
+	
+	public static boolean StringIsInt(String stringThatMayBeInt) {
+		int numIntegerFound = 0;
+		for(int i = 0; i < stringThatMayBeInt.length(); i++) {
+			if(Character.isDigit(stringThatMayBeInt.charAt(i))) {
+				numIntegerFound++;
+			}
+		}
+		if(numIntegerFound == stringThatMayBeInt.length()) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
+	public void reformatPinNumber(Account customerAccount) {
+		if (pinNumber < 10) {
 			System.out.println("Pin Number: 000" + customerAccount.getPinNumber());
 		}
 		else if (pinNumber < 100) {
@@ -54,23 +77,7 @@ public class Account {
 		}
 		else {
 			System.out.println("Pin Number: " + customerAccount.getPinNumber());
-
 		}
-	}
-
-	public boolean checkPinValidity(String pinNumberString) {
-		if(StringIsInt(pinNumberString)) {
-			int pinNumber = Integer.parseInt(pinNumberString);  
-		}
-		else {
-			System.out.println("Valid PIN numbers are positive, four-digit integers.");
-			return false;
-		}
-		if (pinNumberString.length() != 4 || pinNumber > 9999 || pinNumber < 0) {
-			System.out.println("Valid PIN numbers are positive, four-digit integers.");
-			return false;
-		}
-		return true;
 	}
 	
 	public void depositCash(int depositAmount) {
@@ -95,33 +102,15 @@ public class Account {
 		}
 	}
 	
-	
-	
-	private int getUserInput() {
+	public int getUserInput() {
 		Scanner keyboardIn = new Scanner(System.in);
 		return keyboardIn.nextInt();
 	}
 		
-	private String getUserStringInput() {
+	public String getUserStringInput() {
 		Scanner keyboardIn = new Scanner(System.in);
 		return keyboardIn.nextLine();
 	}
-	
-	private static boolean StringIsInt(String stringThatMayBeInt) {
-		int numIntegerFound = 0;
-		for(int i = 0; i < stringThatMayBeInt.length(); i++) {
-			if(Character.isDigit(stringThatMayBeInt.charAt(i))) {
-				numIntegerFound++;
-			}
-		}
-		if(numIntegerFound == stringThatMayBeInt.length()) {
-			return true;
-		}
-		else {
-			return false;
-		}
-	}
-	
 	
 	public String getAccountOwner() {
 		return accountOwner;
@@ -133,11 +122,5 @@ public class Account {
 	
 	public int getBalance() {
 		return this.accountBalance;
-	}
-
-	public static void main(String[] args) {
-		
-	
-		
 	}
 }
