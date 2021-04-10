@@ -12,7 +12,6 @@ class EmployeeTest {
 	void CheckLockedATM() {
 		Employee checkEmployee = new Employee();
 		assertTrue(checkEmployee.attemptToLockATM("10"));
-		
 	}
 	
 	@Test
