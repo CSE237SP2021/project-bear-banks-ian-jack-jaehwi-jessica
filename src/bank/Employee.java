@@ -81,7 +81,8 @@ public class Employee {
 			System.out.println("Locking the ATM...");
 			return true;
 		}
-		else {
+		else 
+		{
 			System.out.println("Failed to lock ATM.");
 			return false;
 		}
