@@ -15,8 +15,8 @@ class MenuTest {
 	@Test
 	void GoodSimulatedUserInputTest() {
 		List<Integer> correctOptions = new ArrayList<Integer>();
-		correctOptions.add(1);
-		int userInput = 1;
+		correctOptions.add(3);
+		int userInput = 3;
 		assertTrue(correctOptions.contains(userInput));
 	}
 	
