@@ -16,21 +16,17 @@ public class Menu {
 		 customerAccount = new Account();
 		 employee = new Employee();
 		 correctInputs = new ArrayList<Integer>();
-		 
 	}
 
 	public static void main(String[] args) {
-		
 		Menu bankMenu = new Menu();
-		
 		correctInputs.add(1);
 		correctInputs.add(2);
-		
 		bankMenu.runMenu();
-		
 	}
 
 	public void runMenu() {
+		
 		this.displayMainMenu();
 		
 		int selectedOption = this.getUserInput(correctInputs);
@@ -154,11 +150,6 @@ public class Menu {
 		displayCustomerOptionsMenu();
 	}
 
-	public void exitProgram() {
-		System.out.println("Exiting the program...");
-		System.exit(0);
-	}
-
 	public void processEmployeeMenu(int EmployeeOption) {
 		if (EmployeeOption == 1) {
 			employee.displayEmployeeQuestionnaire();
@@ -187,21 +178,27 @@ public class Menu {
 				return selectedOption;
 			}
 			else {
-				System.out.println("Please choose one of the following options: " + correctInputs);
+				System.out.println("Please choose an option from " + correctInputs.get(0) + " to " + 
+									correctInputs.get(correctInputs.size() - 1) + ".");
 				return getUserInput(correctInputs);
 			}
 		}
 		
 		catch(Exception e) {
 			keyboardIn.nextLine();
-			System.out.println("Please choose one of the following options: " + correctInputs);
+			System.out.println("Please choose an option from " + correctInputs.get(0) + " to " + 
+								correctInputs.get(correctInputs.size() - 1) + ".");
 			return getUserInput(correctInputs);
 		}
-
 	}
 	
 	public int getMoneyInput() {
 		return keyboardIn.nextInt();
+	}
+	
+	public void exitProgram() {
+		System.out.println("Exiting the program...");
+		System.exit(0);
 	}
 }
 
