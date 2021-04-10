@@ -30,7 +30,7 @@ public class Menu {
 		
 	}
 
-	private void runMenu() {
+	public void runMenu() {
 		this.displayMainMenu();
 		
 		int selectedOption = this.getUserInput(correctInputs);
@@ -40,7 +40,7 @@ public class Menu {
 	}
 	
 	
-	private void displayMainMenu() {
+	public void displayMainMenu() {
 		System.out.println("Welcome to Bear Banks!");
 		System.out.println("I am a...");
 		
@@ -48,7 +48,7 @@ public class Menu {
 		System.out.println("(2) Employee");
 	}
 
-	private void processMainMenu(int selectedOption) {
+	public void processMainMenu(int selectedOption) {
 		if (selectedOption == 1) {
 			this.displayCustomerMenu();
 			 
@@ -68,7 +68,7 @@ public class Menu {
 		}
 	}
 	
-	private void displayCustomerMenu() {
+	public void displayCustomerMenu() {
 		System.out.println("(1) Create Account");
 		System.out.println("(2) Exit");
 		System.out.println("(3) Go Back");
@@ -77,7 +77,7 @@ public class Menu {
 
 	}
 	
-	private void displayEmployeeMenu() {
+	public void displayEmployeeMenu() {
 		System.out.println("(1) Lock the ATM");
 		System.out.println("(2) Exit");
 		System.out.println("(3) Go Back");
@@ -85,14 +85,16 @@ public class Menu {
 		correctInputs.add(3);
 	}
 	
-	private void processCustomerMenu(int CustomerOption) {
+	public void processCustomerMenu(int CustomerOption) {
 		
 		if (CustomerOption == 1) {
 			customerAccount.initializeAccountDetails(customerAccount);
 			this.displayCustomerOptionsMenu();
-		} else if (CustomerOption == 2) {
+		}
+		else if (CustomerOption == 2) {
 			exitProgram();
-		} else if (CustomerOption == 3) {
+		}
+		else if (CustomerOption == 3) {
 			correctInputs.remove(2);
 			runMenu();
 		}
@@ -116,6 +118,10 @@ public class Menu {
 			correctInputs.add(5);
 		}
 		
+		processCustomerOptionsMenu();
+	}
+
+	public void processCustomerOptionsMenu() {
 		int selectedOption = getUserInput(correctInputs);
 		if (selectedOption == 1) {
 			System.out.println("Your current balance is: $" + customerAccount.getBalance());
@@ -148,18 +154,20 @@ public class Menu {
 		displayCustomerOptionsMenu();
 	}
 
-	private void exitProgram() {
+	public void exitProgram() {
 		System.out.println("Exiting the program...");
 		System.exit(0);
 	}
 
-	private void processEmployeeMenu(int EmployeeOption) {
+	public void processEmployeeMenu(int EmployeeOption) {
 		if (EmployeeOption == 1) {
 			employee.displayEmployeeQuestionnaire();
-		} else if (EmployeeOption == 2) {
+		}
+		else if (EmployeeOption == 2) {
 			System.out.println("Exiting the program");
 			return;
-		} else if (EmployeeOption == 3) {
+		}
+		else if (EmployeeOption == 3) {
 			correctInputs.remove(2);
 			runMenu();
 		}
@@ -171,16 +179,20 @@ public class Menu {
 		}
 	}
 	
-	private int getUserInput(List<Integer> correctInputs) {
+	public int getUserInput(List<Integer> correctInputs) {
 		try {
 			int selectedOption = keyboardIn.nextInt();
+			
 			if (correctInputs.contains(selectedOption)) {
 				return selectedOption;
-			} else {
+			}
+			else {
 				System.out.println("Please choose one of the following options: " + correctInputs);
 				return getUserInput(correctInputs);
 			}
-		} catch(Exception e) {
+		}
+		
+		catch(Exception e) {
 			keyboardIn.nextLine();
 			System.out.println("Please choose one of the following options: " + correctInputs);
 			return getUserInput(correctInputs);
@@ -188,7 +200,7 @@ public class Menu {
 
 	}
 	
-	private int getMoneyInput() {
+	public int getMoneyInput() {
 		return keyboardIn.nextInt();
 	}
 }
