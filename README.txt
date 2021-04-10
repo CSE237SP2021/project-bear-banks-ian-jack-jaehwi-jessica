@@ -37,4 +37,12 @@ Project: Bear Banks
 	(A) runBank.sh is the script needed to run our program. Just to clarify,
 		everything should be run from the development branch.
 		
+		**IMPORTANT**
+		On a Mac, ./runBank.sh has been executing correctly.
+		On a Windows machine, ./runBank.sh has ALSO been executing correctly.
+			*However, if you see the following error: "$'\r': command not found",
+			try typing "dos2unix" and pressing enter and then retry "./runBank.sh".
+			Alternatively, if you have Git Bash installed, you can run the program
+			from there by typing "./runBank.sh".
+		
 ******
