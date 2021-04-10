@@ -31,11 +31,10 @@ public class Account {
 		}
 		pinNumber = Integer.parseInt(pinNumberString);
 		customerAccount = new Account(accountOwner, pinNumber);
-		reformatPinNumber(customerAccount);
 
 		System.out.println("Success! We've created your new account.");
 		System.out.println("Account name: " + customerAccount.getAccountOwner());
-		
+		reformatPinNumber(customerAccount);
 	}
 
 	public boolean checkPinValidity(String pinNumberString) {
