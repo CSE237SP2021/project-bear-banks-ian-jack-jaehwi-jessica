@@ -7,7 +7,17 @@ import org.junit.jupiter.api.Test;
 import bank.Account;
 
 class AccountTest {
-
+	
+	@Test
+	void checkStringIsIntTest() {
+		assertTrue(Account.StringIsInt("10"));
+	}
+	
+	@Test
+	void checkStringIsNotIntTest() {
+		assertFalse(Account.StringIsInt("notAnInt"));
+	}
+	
 	@Test
 	void catchLargePinNumberTest() {
 		Account tooBigPinNumber = new Account("John Smith", 12345);
@@ -31,7 +41,6 @@ class AccountTest {
 		Account acceptablePinNumber = new Account("John Smith", 1234);
 		assertTrue(acceptablePinNumber.checkPinValidity(Integer.toString(acceptablePinNumber.getPinNumber())));
 	}
-	
 	
 	@Test
 	void catchNegativeDepositTest() {
