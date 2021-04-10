@@ -187,7 +187,7 @@ public class Menu {
 		catch(Exception e) {
 			keyboardIn.nextLine();
 			System.out.println("Please choose an option from " + correctInputs.get(0) + " to " + 
-					correctInputs.get(correctInputs.size() - 1) + ".");
+								correctInputs.get(correctInputs.size() - 1) + ".");
 			return getUserInput(correctInputs);
 		}
 	}
