@@ -41,7 +41,7 @@ Project: Bear Banks
 		On a Mac, ./runBank.sh has been executing correctly.
 		On a Windows machine, ./runBank.sh has ALSO been executing correctly.
 			*However, if you see the following error: "$'\r': command not found",
-			try typing "dos2unix" and pressing enter and then retry "./runBank.sh".
+			try typing "dos2unix runBank.sh" and pressing enter and then retry "./runBank.sh".
 			Alternatively, if you have Git Bash installed, you can run the program
 			from there by typing "./runBank.sh".
 		
