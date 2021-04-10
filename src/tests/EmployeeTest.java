@@ -11,14 +11,14 @@ class EmployeeTest {
 	@Test
 	void CheckLockedATM() {
 		Employee checkEmployee = new Employee();
-		assertTrue(checkEmployee.lockATM("10"));
+		assertTrue(checkEmployee.attemptToLockATM("10"));
 		
 	}
 	
 	@Test
 	void CheckNotLockedATM() {
 		Employee checkEmployee = new Employee();
-		assertFalse(checkEmployee.lockATM("asdf"));
+		assertFalse(checkEmployee.attemptToLockATM("asdf"));
 		
 	}
 

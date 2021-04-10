@@ -1,7 +1,4 @@
 package bank;
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Employee {
@@ -63,22 +60,22 @@ public class Employee {
 	}
 	
 	private void displayQuestionThree() {
-		System.out.println("3. How many iterations are there in total?");
+		System.out.println("3. How many project iterations were there in total?");
 		System.out.println("A. 0");
 		System.out.println("B. 1");
 		System.out.println("C. 3");
 	}
 	
 	private void welcomeEmployee() {
-		System.out.println("Welcome, Bear Bank employee!");
+		System.out.println("Welcome, Bear Banks employee!");
 		System.out.println("To confirm you are not a computer, please enter the number '10' to lock the ATM.");
 		
 		String verificationNumber = getEmployeeStringInput();
 		
-		lockATM(verificationNumber);
+		attemptToLockATM(verificationNumber);
 	}
 	
-	public boolean lockATM(String verificationNumber) {
+	public boolean attemptToLockATM(String verificationNumber) {
 		
 		if(verificationNumber.equals("10")) {
 			System.out.println("Locking the ATM...");
