@@ -6,6 +6,7 @@ public class Account {
 	private String accountOwner;
 	private int pinNumber;
 	private int accountBalance;
+	private static String receipt;
 
 	public Account() {}
 	
@@ -13,6 +14,7 @@ public class Account {
 		this.accountOwner = accountOwner;
 		this.pinNumber = pinNumber;
 		this.accountBalance = 0;
+		receipt = "";
 	}
 	
 	public void initializeAccountDetails(Account customerAccount) {
@@ -85,6 +87,7 @@ public class Account {
 		} else {
 			this.accountBalance += depositAmount;
 			System.out.println("Your new balance is: $" + this.getBalance());
+			receipt += "You deposited $" + depositAmount + ", making your balance $" + this.getBalance() + "." + "\n";
 		}
 	}
 	
@@ -97,8 +100,41 @@ public class Account {
 			} else {
 				this.accountBalance -= withdrawAmount;
 				System.out.println("Your new balance is: $" + this.getBalance());
+				receipt += "You withdrew $" + withdrawAmount + ", making your balance $" + this.getBalance() + "." + "\n";
 			}
 		}
+	}
+	
+	public String printReceipt(Account customerAccount) {
+		if("".equals(receipt)) {
+			return "No transaction history to record.";
+		}
+		return receipt;
+	}
+	
+	public void displayMealPoints() {
+		System.out.println("Since you're a WashU student, we've calculated your balance in terms of the Gold Meal Plan...");
+		System.out.println("Your balance of $" + this.getBalance() + " equals " + mealPointsConversion("gold") + " meal points.");
+		System.out.println("If you have the Silver Meal Plan...");
+		System.out.println("Your balance of $" + this.getBalance() + " equals " + mealPointsConversion("silver") + " meal points.");
+		System.out.println("If you have the Bronze Meal Plan...");
+		System.out.println("Your balance of $" + this.getBalance() + " equals " + mealPointsConversion("bronze") + " meal points.");
+		System.out.println();
+	}
+	
+	public int mealPointsConversion(String planType) {
+		int mealPoints = 0;
+		if("gold".equals(planType)){
+			mealPoints = (int)(this.getBalance() * (2450.0/3222));
+		}
+		if("silver".equals(planType)) {
+			mealPoints = (int)(this.getBalance() * (1997.0/2775));
+		}
+		if("bronze".equals(planType)) {
+			mealPoints = (int)(this.getBalance() * (1547.0/2319));
+		}
+		
+		return mealPoints;
 	}
 	
 	public int getUserInput() {
