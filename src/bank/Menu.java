@@ -197,6 +197,8 @@ public class Menu {
 	}
 	
 	public void exitProgram() {
+		System.out.println(customerAccount.printReceipt(customerAccount));
+		customerAccount.displayMealPoints();
 		System.out.println("Exiting the program...");
 		System.exit(0);
 	}
