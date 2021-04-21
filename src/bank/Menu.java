@@ -124,13 +124,13 @@ public class Menu {
 		}
 		else if (selectedOption == 2) {
 			System.out.println("How much cash would you like to deposit?");
-			int depositAmount = getMoneyInput();
-			customerAccount.depositCash(depositAmount);
+			String depositAmountString = getUserStringInput();
+			customerAccount.depositCash(depositAmountString);
 		}
 		else if (selectedOption == 3) {
 			System.out.println("How much cash would you like to withdraw?");
-			int withdrawAmount = getMoneyInput();
-			customerAccount.withdrawCash(withdrawAmount);
+			String withdrawAmountString = getUserStringInput();
+			customerAccount.withdrawCash(withdrawAmountString);
 		}
 		else if (selectedOption == 4) {
 			exitProgram();
@@ -194,6 +194,11 @@ public class Menu {
 	
 	public int getMoneyInput() {
 		return keyboardIn.nextInt();
+	}
+	
+	public String getUserStringInput() {
+		Scanner keyboardIn = new Scanner(System.in);
+		return keyboardIn.nextLine();
 	}
 	
 	public void exitProgram() {
