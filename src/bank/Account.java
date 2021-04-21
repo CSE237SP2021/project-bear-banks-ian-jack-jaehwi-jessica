@@ -113,11 +113,12 @@ public class Account {
 	}
 	
 	public void displayMealPoints() {
-		System.out.println("Since you're a WashU student, we've calculated your balance in terms of the Gold Meal Plan...");
+		System.out.println("Since you're a WashU student, we've calculated your balance in terms of meal plans...");
+		System.out.println("If you have the Gold Meal Plan:");
 		System.out.println("Your balance of $" + this.getBalance() + " equals " + mealPointsConversion("gold") + " meal points.");
-		System.out.println("If you have the Silver Meal Plan...");
+		System.out.println("If you have the Silver Meal Plan:");
 		System.out.println("Your balance of $" + this.getBalance() + " equals " + mealPointsConversion("silver") + " meal points.");
-		System.out.println("If you have the Bronze Meal Plan...");
+		System.out.println("If you have the Bronze Meal Plan:");
 		System.out.println("Your balance of $" + this.getBalance() + " equals " + mealPointsConversion("bronze") + " meal points.");
 		System.out.println();
 	}
