@@ -1,7 +1,4 @@
 package bank;
-import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.List;
 import java.util.Scanner;
 
 public class Menu {
@@ -9,19 +6,18 @@ public class Menu {
 	private Scanner keyboardIn;
 	private Account customerAccount;
 	private Employee employee;
-	private static List<Integer> correctInputs;
+	private static int highestAcceptableInput;
 	
 	public Menu() {
 		 keyboardIn = new Scanner(System.in);
 		 customerAccount = new Account();
 		 employee = new Employee();
-		 correctInputs = new ArrayList<Integer>();
+		 highestAcceptableInput = 0;
 	}
 
 	public static void main(String[] args) {
 		Menu bankMenu = new Menu();
-		correctInputs.add(1);
-		correctInputs.add(2);
+		highestAcceptableInput = 2;
 		bankMenu.runMenu();
 	}
 
@@ -29,7 +25,7 @@ public class Menu {
 		
 		this.displayMainMenu();
 		
-		int selectedOption = this.getUserInput(correctInputs);
+		int selectedOption = this.getUserInput();
 		
 		this.processMainMenu(selectedOption);
 		keyboardIn.close();
@@ -48,17 +44,17 @@ public class Menu {
 		if (selectedOption == 1) {
 			this.displayCustomerMenu();
 			 
-			int CustomerOption = this.getUserInput(correctInputs);
+			int CustomerOption = this.getUserInput();
 			this.processCustomerMenu(CustomerOption);
 		}
 		else if (selectedOption == 2) {
 			this.displayEmployeeMenu();
 
-			int EmployeeOption = this.getUserInput(correctInputs);
+			int EmployeeOption = this.getUserInput();
 			this.processEmployeeMenu(EmployeeOption);
 		}
 		else {
-			selectedOption = this.getUserInput(correctInputs);
+			selectedOption = this.getUserInput();
 			
 			this.processMainMenu(selectedOption);
 		}
@@ -69,7 +65,7 @@ public class Menu {
 		System.out.println("(2) Exit");
 		System.out.println("(3) Go Back");
 
-		correctInputs.add(3);
+		highestAcceptableInput = 3;
 
 	}
 	
@@ -78,7 +74,7 @@ public class Menu {
 		System.out.println("(2) Exit");
 		System.out.println("(3) Go Back");
 
-		correctInputs.add(3);
+		highestAcceptableInput = 3;
 	}
 	
 	public void processCustomerMenu(int CustomerOption) {
@@ -91,13 +87,13 @@ public class Menu {
 			exitProgram();
 		}
 		else if (CustomerOption == 3) {
-			correctInputs.remove(2);
+			highestAcceptableInput = 2;
 			runMenu();
 		}
 		
 		else {
 			System.out.println("Please select one of the available options.");
-			int newCustomerOption = this.getUserInput(correctInputs);
+			int newCustomerOption = this.getUserInput();
 			this.processCustomerMenu(newCustomerOption);
 		}
 	}
@@ -109,45 +105,41 @@ public class Menu {
 		System.out.println("(4) Exit");
 		System.out.println("(5) Go Back");
 		
-		if (!correctInputs.contains(4) && !correctInputs.contains(5)) {
-			correctInputs.add(4);
-			correctInputs.add(5);
-		}
-		
+		highestAcceptableInput = 5;
 		processCustomerOptionsMenu();
 	}
 
 	public void processCustomerOptionsMenu() {
-		int selectedOption = getUserInput(correctInputs);
+		int selectedOption = getUserInput();
 		if (selectedOption == 1) {
 			System.out.println("Your current balance is: $" + customerAccount.getBalance());
+			displayCustomerOptionsMenu();
 		}
 		else if (selectedOption == 2) {
 			System.out.println("How much cash would you like to deposit?");
 			String depositAmountString = getUserStringInput();
 			customerAccount.depositCash(depositAmountString);
+			displayCustomerOptionsMenu();
 		}
 		else if (selectedOption == 3) {
 			System.out.println("How much cash would you like to withdraw?");
 			String withdrawAmountString = getUserStringInput();
 			customerAccount.withdrawCash(withdrawAmountString);
+			displayCustomerOptionsMenu();
 		}
 		else if (selectedOption == 4) {
 			exitProgram();
 		}
 		else if (selectedOption == 5) {
-			
 			displayCustomerMenu();
 			
-			correctInputs.remove(4);
-			correctInputs.remove(3);
-			correctInputs.remove(2);
-			processCustomerMenu(this.getUserInput(correctInputs));
+			highestAcceptableInput = 3;
+			processCustomerMenu(this.getUserInput());
 		}
 		else {
 			System.out.println("Please select one of the available options.");
+			displayCustomerOptionsMenu();
 		}
-		displayCustomerOptionsMenu();
 	}
 
 	public void processEmployeeMenu(int EmployeeOption) {
@@ -159,37 +151,42 @@ public class Menu {
 			return;
 		}
 		else if (EmployeeOption == 3) {
-			correctInputs.remove(2);
+			highestAcceptableInput = 2;
 			runMenu();
 		}
 		else {
 			System.out.println("Please select one of the available options.");
 			displayEmployeeMenu();
-			EmployeeOption = this.getUserInput(correctInputs);
+			EmployeeOption = this.getUserInput();
 			this.processEmployeeMenu(EmployeeOption);
 		}
 	}
 	
-	public int getUserInput(List<Integer> correctInputs) {
+	public int getUserInput() {
 		try {
 			int selectedOption = keyboardIn.nextInt();
 			
-			if (correctInputs.contains(selectedOption)) {
+			if (selectedOption > 0 && selectedOption <= highestAcceptableInput) {
 				return selectedOption;
 			}
 			else {
-				System.out.println("Please choose an option from " + correctInputs.get(0) + " to " + 
-									correctInputs.get(correctInputs.size() - 1) + ".");
-				return getUserInput(correctInputs);
+				System.out.println("Please choose an option from 1 to " + highestAcceptableInput + ".");
+				return getUserInput();
 			}
 		}
 		
 		catch(Exception e) {
 			keyboardIn.nextLine();
-			System.out.println("Please choose an option from " + correctInputs.get(0) + " to " + 
-								correctInputs.get(correctInputs.size() - 1) + ".");
-			return getUserInput(correctInputs);
+			System.out.println("Please choose an option from 1 to " + highestAcceptableInput + ".");
+			return getUserInput();
 		}
+	}
+	
+	public void exitProgram() {
+		System.out.println(customerAccount.printReceipt(customerAccount));
+		customerAccount.displayMealPoints();
+		System.out.println("Exiting the program...");
+		System.exit(0);
 	}
 	
 	public int getMoneyInput() {
@@ -201,11 +198,9 @@ public class Menu {
 		return keyboardIn.nextLine();
 	}
 	
-	public void exitProgram() {
-		System.out.println(customerAccount.printReceipt(customerAccount));
-		customerAccount.displayMealPoints();
-		System.out.println("Exiting the program...");
-		System.exit(0);
+	public int getHighestAcceptableInput() {
+		return highestAcceptableInput;
 	}
+	
 }
 
