@@ -19,7 +19,7 @@ public class Account {
 		receipt = "";
 	}
 
-	public void initializeAccountDetails(Account customerAccount) {
+	public Account initializeAccountDetails(Account customerAccount) {
 
 		System.out.println("Please enter your name.");
 		String accountOwner = getUserStringInput();
@@ -39,6 +39,7 @@ public class Account {
 		System.out.println("Success! We've created your new account.");
 		System.out.println("Account name: " + customerAccount.getAccountOwner());
 		reformatPinNumber(customerAccount);
+		return customerAccount;
 	}
 
 	public boolean checkPinValidity(String pinNumberString) {

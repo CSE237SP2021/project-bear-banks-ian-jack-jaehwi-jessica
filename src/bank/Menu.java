@@ -80,7 +80,7 @@ public class Menu {
 	public void processCustomerMenu(int CustomerOption) {
 		
 		if (CustomerOption == 1) {
-			customerAccount.initializeAccountDetails(customerAccount);
+			customerAccount = customerAccount.initializeAccountDetails(customerAccount);
 			this.displayCustomerOptionsMenu();
 		}
 		else if (CustomerOption == 2) {
