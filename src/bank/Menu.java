@@ -103,7 +103,7 @@ public class Menu {
 		System.out.println("(2) Deposit Cash");
 		System.out.println("(3) Withdraw Cash");
 		System.out.println("(4) Exit");
-		System.out.println("(5) Go Back");
+		System.out.println("(5) Go Back (Warning! This will reset your account)");
 		
 		highestAcceptableInput = 5;
 		processCustomerOptionsMenu();
@@ -128,6 +128,8 @@ public class Menu {
 			displayCustomerOptionsMenu();
 		}
 		else if (selectedOption == 4) {
+			System.out.println(customerAccount.printReceipt(customerAccount));
+			customerAccount.displayMealPoints();
 			exitProgram();
 		}
 		else if (selectedOption == 5) {
@@ -183,8 +185,6 @@ public class Menu {
 	}
 	
 	public void exitProgram() {
-		System.out.println(customerAccount.printReceipt(customerAccount));
-		customerAccount.displayMealPoints();
 		System.out.println("Exiting the program...");
 		System.exit(0);
 	}
