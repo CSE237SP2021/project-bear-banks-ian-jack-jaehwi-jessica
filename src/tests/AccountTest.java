@@ -162,5 +162,12 @@ class AccountTest {
 		doubleWithdraw.withdrawCash("10.5");
 		assertEquals(20, doubleWithdraw.getBalance());
 	}
+	
+	@Test
+	void checkNumberOfSampleItemsCustomerCanBuyTest() {
+		Account customerAccount = new Account("John Smith", 1111);
+		customerAccount.depositCash("40");
+		assertEquals(4, customerAccount.displayAffordableWashUApparel());
+	}
 
 }
