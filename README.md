@@ -1,4 +1,5 @@
 # cse237-project
+<<<<<<< HEAD
 
 **Please see README.txt in the README branch to see the progress report for iteration 1.**
 
@@ -50,3 +51,5 @@
 
 
       
+=======
+>>>>>>> 65463ee80a433eb6865e5b52f1df54c083e336c9
