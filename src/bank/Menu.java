@@ -130,6 +130,7 @@ public class Menu {
 		else if (selectedOption == 4) {
 			System.out.println(customerAccount.printReceipt(customerAccount));
 			customerAccount.displayMealPoints();
+			customerAccount.displayAffordableWashUApparel();
 			exitProgram();
 		}
 		else if (selectedOption == 5) {
@@ -149,7 +150,7 @@ public class Menu {
 			employee.displayEmployeeQuestionnaire();
 		}
 		else if (EmployeeOption == 2) {
-			System.out.println("Exiting the program");
+			System.out.println("Exiting the program...");
 			return;
 		}
 		else if (EmployeeOption == 3) {

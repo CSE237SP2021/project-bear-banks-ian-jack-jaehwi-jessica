@@ -8,6 +8,9 @@ public class Account {
 	private int pinNumber;
 	private int accountBalance;
 	private static String receipt;
+	
+	private String[] apparelType;
+	private double[] apparelPrice;
 
 	public Account() {
 	}
@@ -17,6 +20,9 @@ public class Account {
 		this.pinNumber = pinNumber;
 		this.accountBalance = 0;
 		receipt = "";
+		apparelType = new String[] {"WashU keychain", "WashU magnet", "WashU mug", "WashU water bottle", 
+		               "WashU sweatshirt"};
+		apparelPrice = new double[] {6.95, 8.95, 12.95, 28.99, 42.99};
 	}
 
 	public Account initializeAccountDetails(Account customerAccount) {
@@ -94,7 +100,7 @@ public class Account {
 						+ "\n";
 			}
 		} else {
-			System.out.println("Please enter integer input only");
+			System.out.println("Please enter integers only.");
 		}
 	}
 
@@ -115,7 +121,7 @@ public class Account {
 				}
 			}
 		} else {
-			System.out.println("Please enter integer input only");
+			System.out.println("Please enter integers only.");
 
 		}
 
@@ -129,16 +135,14 @@ public class Account {
 	}
 
 	public void displayMealPoints() {
-		System.out.println("Since you're a WashU student, we've calculated your balance in terms of meal plans...");
-		System.out.println("If you have the Gold Meal Plan:");
-		System.out.println(
-				"Your balance of $" + this.getBalance() + " equals " + mealPointsConversion("gold") + " meal points.");
-		System.out.println("If you have the Silver Meal Plan:");
-		System.out.println("Your balance of $" + this.getBalance() + " equals " + mealPointsConversion("silver")
-				+ " meal points.");
-		System.out.println("If you have the Bronze Meal Plan:");
-		System.out.println("Your balance of $" + this.getBalance() + " equals " + mealPointsConversion("bronze")
-				+ " meal points.");
+		System.out.println("Since you are a WashU student, we have calculated your balance in terms of meal plans:");
+		System.out.println("If you have the Gold Meal Plan, " +
+				"your balance of $" + this.getBalance() + " is equal to " + mealPointsConversion("gold") + " meal points.");
+		System.out.println("If you have the Silver Meal Plan, " +
+				"your balance of $" + this.getBalance() + " is equal to " + mealPointsConversion("silver") + " meal points.");
+		System.out.println("If you have the Bronze Meal Plan, " +
+				"your balance of $" + this.getBalance() + " is equal to " + mealPointsConversion("bronze") + " meal points.");
+
 		System.out.println();
 	}
 
@@ -155,6 +159,21 @@ public class Account {
 		}
 
 		return mealPoints;
+	}
+	
+	public int displayAffordableWashUApparel() {
+		int numberOfSampleItemsCustomerCanBuy = 0;
+		System.out.println("Additionally, here is a list of sample WashU apparel that you can buy with your current balance:");
+		for (int i = 0; i < apparelPrice.length; i++) {
+			if (this.getBalance() >= apparelPrice[i]) {
+				System.out.println(apparelType[i] + ": $" + apparelPrice[i]);
+				numberOfSampleItemsCustomerCanBuy++;
+			}
+		}
+		if (numberOfSampleItemsCustomerCanBuy == 0) {
+			System.out.println("Oh no! You don't have enough balance to buy any sample items.");
+		}
+		return numberOfSampleItemsCustomerCanBuy;
 	}
 
 	public int getUserInput() {
