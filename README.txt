@@ -33,8 +33,7 @@ Project: Bear Banks
 4.) What commands are needed to compile and run your code from the command
 	line (or better yet, provide a script that people can use to run your
 	program!)
-	(A) runBank.sh is the script needed to run our program. Once again,
-		please run this from the development branch.
+	(A) runBank.sh is the script needed to run our program.
 		
 		**IMPORTANT**
 		On a Mac, ./runBank.sh has been executing correctly.
